@@ -2,6 +2,11 @@ var maxHealth = 100;
 var health = 100;
 var healingSpeed = 1;
 
+function updateHealthBar() {
+  document.getElementById("health").value = health;
+  document.getElementById("health").max = maxHealth;
+}
+
 function healthBoost(extra) {
   maxHealth += extra;
 }
