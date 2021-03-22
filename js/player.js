@@ -5,7 +5,7 @@ var healingSpeed = 1;
 function updateHealthBar() {
   document.getElementById("health").value = health;
   document.getElementById("health").max = maxHealth;
-  document.getElementById("health").innerHTML = health + " hp / " + maxHealth + " hp";
+  document.getElementById("healthText").innerHTML = health + " hp / " + maxHealth + " hp";
 }
 
 function healthBoost(extra) {
