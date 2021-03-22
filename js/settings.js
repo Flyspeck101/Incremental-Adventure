@@ -3,4 +3,5 @@ var desusify = (function(){
     document.getElementById("title").innerHTML = "Art Project";
   } else {
     document.getElementById("title").innerHTML = "Incremental Adventure";
+  }
 })
