@@ -1,15 +1,14 @@
-var desusify = (
-  function() {
-    if (!document
-        .getElementById("title")
-        .innerHTML == "Incremental Adventure") {
-      document
-        .getElementById("title")
-        .innerHTML = "Incremental Adventure";
-    } else {
-      document
-        .getElementById("title")
-        .innerHTML = "Art Project";
-    }
+desusifyValue = 0;
+function desusify() {
+  if (desusifyValue == 1) {
+    document
+      .getElementById("title")
+      .innerHTML = "Incremental Adventure";
+    desusifyValue = 0;
+  } else {
+    document
+      .getElementById("title")
+      .innerHTML = "Art Project";
+    desusifyValue = 1;
   }
-)
+}
