@@ -1,15 +1,15 @@
 var desusify = (
   function() {
-    if (document
+    if (!document
         .getElementById("title")
         .innerHTML == "Incremental Adventure") {
       document
         .getElementById("title")
-        .innerHTML = "Art Project";
+        .innerHTML = "Incremental Adventure";
     } else {
       document
         .getElementById("title")
-        .innerHTML = "Incremental Adventure";
+        .innerHTML = "Art Project";
     }
   }
 )
