@@ -34,7 +34,7 @@ function update() {
   document.getElementById("health").value = health;
   document.getElementById("health").max = maxHealth;
   document.getElementById("healthText").innerHTML = health + " hp / " + maxHealth + " hp";
-  money = Math.round(money);
+  money = money.toFixed(2);
   if (money < 0) {
     document.getElementById("money").innerHTML = "You are in debt! You have -$" + (0 - money);
   } else {
