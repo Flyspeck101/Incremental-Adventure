@@ -2,11 +2,6 @@ var maxHealth = 100;
 var health = 100;
 var healingSpeed = 1;
 
-function updateHealthBar() {
-  document.getElementById("health").value = health;
-  document.getElementById("health").max = maxHealth;
-  document.getElementById("healthText").innerHTML = health + " hp / " + maxHealth + " hp";
-}
 
 function healthBoost(extra) {
   maxHealth += extra;
@@ -28,5 +23,20 @@ function healingSpeedBoost(extra) {
 }
 
 
-var money = 0;
-var moneyRate = 1;
+var money = -10.00;
+var moneyRate = 0.01;
+
+function naturalMoney() {
+  money += moneyRate;
+}
+
+function update() {
+  document.getElementById("health").value = health;
+  document.getElementById("health").max = maxHealth;
+  document.getElementById("healthText").innerHTML = health + " hp / " + maxHealth + " hp";
+  if (money < 0) {
+    document.getElementById("money").innerHTML = "You are in debt! You have -$" + (0 - money);
+  } else {
+    document.getElementById("money").innerHTML = "You have $" + money;
+  }
+}
