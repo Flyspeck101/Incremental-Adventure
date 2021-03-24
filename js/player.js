@@ -1,3 +1,7 @@
+function moneyRound(x) {
+  return Number.parseFloat(x).toFixed(2);
+}
+
 var maxHealth = 100;
 var health = 100;
 var healingSpeed = 1;
@@ -34,7 +38,7 @@ function update() {
   document.getElementById("health").value = health;
   document.getElementById("health").max = maxHealth;
   document.getElementById("healthText").innerHTML = health + " hp / " + maxHealth + " hp";
-  money = money.toFixed(2);
+  money = moneyRound(money);
   if (money < 0) {
     document.getElementById("money").innerHTML = "You are in debt! You have -$" + (0 - money);
   } else {
