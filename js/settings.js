@@ -1,4 +1,4 @@
-desusifyValue = 0;
+var desusifyValue = 0;
 function desusify() {
   if (desusifyValue == 1) {
     document
