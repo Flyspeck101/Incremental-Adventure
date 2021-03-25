@@ -25,7 +25,7 @@ function healingSpeedBoost(extra) {
 
 var money = -1000;
 var moneyRate = 1;
-var startedWorking == false;
+var startedWorking = false;
 
 function naturalMoney() {
   money += moneyRate;
