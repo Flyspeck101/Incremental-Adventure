@@ -49,7 +49,7 @@ function update() {
     document.getElementById("money").innerHTML = 
       "You have $" + money + " ($" + (moneyRate * 2) + "/s)"; 
   } 
-  if (money == 0 && !startedWorking) { 
+  if (money >= 0 && !startedWorking) { 
     moneyRate = 4; 
     document.getElementById("beg").remove();
     notify("You got a job at a McDonalds outlet. \
