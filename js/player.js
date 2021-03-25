@@ -26,7 +26,7 @@ function healingSpeedBoost(extra) {
 
 // Money 
 var money = -1000; 
-var moneyRate = 2; 
+var moneyRate = 0; 
 var startedWorking = false; 
 
 function naturalMoney() { 
@@ -44,13 +44,15 @@ function update() {
     health + " hp / " + maxHealth + " hp"; 
   if (money < 0) { 
     document.getElementById("money").innerHTML = 
-      "You are in debt! You have -$" + (0 - money); 
+      "You are in debt! You have -$" + (0 - money) + " ($" + (moneyRate * 2) + "/s)"; 
   } else { 
     document.getElementById("money").innerHTML = 
-      "You have $" + money; 
+      "You have $" + money + " ($" + (moneyRate * 2) + "/s)"; 
   } 
   if (money == 0 && !startedWorking) { 
     moneyRate = 4; 
-    notify("You got a job at a McDonalds outlet. You now earn +$2 per second")
+    document.getElementById("beg").remove();
+    notify("You got a job at a McDonalds outlet. \
+\nEffect:\nMoney rate +$8/s, begging is disabled");
   } 
 }
