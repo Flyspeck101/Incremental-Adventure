@@ -1,1 +1,56 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('8 9=i;8 5=i;8 c=1;6 q(7){9+=7}6 o(){5+=c;d(5>9){5=9}}6 r(j){c=j}6 m(7){c+=7}8 3=-p;8 e=2;8 l=n;6 t(){3+=e}6 u(7){3+=7}6 v(){b.a("5").w=5;b.a("5").s=9;b.a("x").g=5+" h / "+9+" h";d(3<0){b.a("3").g="f y z A! f k -$"+(0-3)}B{b.a("3").g="f k $"+3}d(3==0&&!l){e=4}}',38,38,'|||money||health|function|extra|var|maxHealth|getElementById|document|healingSpeed|if|moneyRate|You|innerHTML|hp|100|newValue|have|startedWorking|healingSpeedBoost|false|naturalHeal|1000|healthBoost|setHealingSpeed|max|naturalMoney|moneyBoost|update|value|healthText|are|in|debt|else'.split('|'),0,{}))
+function notify(text) {
+  alert(text);
+}
+// Health 
+var maxHealth = 100; 
+var health = 100; 
+var healingSpeed = 1; 
+
+function healthBoost(extra) { 
+  maxHealth += extra; 
+} 
+
+function naturalHeal() { 
+  health += healingSpeed; 
+  if (health > maxHealth) { 
+    health = maxHealth; 
+  } 
+} 
+
+function setHealingSpeed(newValue) { 
+  healingSpeed = newValue; 
+} 
+function healingSpeedBoost(extra) { 
+  healingSpeed += extra; 
+} 
+
+// Money 
+var money = -1000; 
+var moneyRate = 2; 
+var startedWorking = false; 
+
+function naturalMoney() { 
+  money += moneyRate; 
+} 
+
+function moneyBoost(extra) { 
+  money += extra; 
+} 
+
+function update() { 
+  document.getElementById("health").value = health; 
+  document.getElementById("health").max = maxHealth; 
+  document.getElementById("healthText").innerHTML = 
+    health + " hp / " + maxHealth + " hp"; 
+  if (money < 0) { 
+    document.getElementById("money").innerHTML = 
+      "You are in debt! You have -$" + (0 - money); 
+  } else { 
+    document.getElementById("money").innerHTML = 
+      "You have $" + money; 
+  } 
+  if (money == 0 && !startedWorking) { 
+    moneyRate = 4; 
+    notify("You got a job at a McDonalds outlet. You now earn +$2 per second")
+  } 
+}
