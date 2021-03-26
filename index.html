@@ -14,12 +14,12 @@
     <progress id="health" value="100" max="100"></progress>
     <p id="healthText">100 hp / 100 hp</p>
     <p id="money">You are in debt! You have -$1000</p>
-    <button onclick="moneyBoost(2)" id="beg">Beg for money</button>
+    <button onclick="player.moneyBoost(2)" id="beg">Beg for money</button>
     <script>
       // Updates
-      setInterval(naturalHeal, 1000);
-      setInterval(naturalMoney, 500);
-      setInterval(update, 1);
+      setInterval(player.naturalHeal, 1000);
+      setInterval(player.naturalMoney, 500);
+      setInterval(player.update, 1);
     </script>
   </body>
 </html>
