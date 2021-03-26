@@ -8,24 +8,70 @@
     <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
   </head>
   <body>
-    <p>--------------------------------</p>
-    <button onclick="desusify()">Desusify Title</button>
-    <p>--------------------------------</p>
-    <progress id="health" value="100" max="100"></progress>
-    <p id="healthText">100 hp / 100 hp</p>
-    <p id="money">You are in debt! You have -$1000</p>
-    <button onclick="moneyBoost(2)" id="beg">Beg for money</button>
+    <!-- Tab links -->
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'Player')">London</button>
+      <button class="tablinks" onclick="openCity(event, 'Inventory')">Paris</button>
+      <button class="tablinks" onclick="openCity(event, 'Settings')">Tokyo</button>
+    </div>
+    
+    <!-- Tab content -->
+    <div id="Player" class="tabcontent">
+      <progress id="health" value="100" max="100"></progress>
+      <p id="healthText">100 hp / 100 hp</p>
+      <p id="money">You are in debt! You have -$1000</p>
+      <button onclick="moneyBoost(2)" id="beg">Beg for money</button>
+      <script>
+        // Updates
+        setInterval(naturalHeal, 1000);
+        setInterval(naturalMoney, 500);
+        setInterval(update, 1);
+      </script>
+    </div>
+    
+    <div id="Inventory" class="tabcontent">
+      <h2>Inventory</h2>
+      <p id="Weapon">Weapon: Fist (1 dmg)</p>
+      <br>
+      <p id="Armor">Armor: None (0 amr)</p>
+    </div>
+    
+    <div id="Settings" class="tabcontent">
+      <h2>Settings</h2>
+      <p>--------------------------------</p>
+      <button onclick="desusify()">Desusify Title</button>
+      <p>--------------------------------</p>
+    </div>
+    
     <script>
-      // Updates
-      setInterval(naturalHeal, 1000);
-      setInterval(naturalMoney, 500);
-      setInterval(update, 1);
+      function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
     </script>
+    
     <div style="position: fixed; bottom: 0px; left: 10px; font-size: 12px;">
       <br>
       <br>
       <br>
       <a href="https://github.com/Flyspeck101/Incremental-Adventure-Genesis" hover="Source code in GitHub">Source code </a>
       <a href="https://discord.gg/dUazpyMQdK">Discord Server</a>
+    </div>
   </body>
 </html>
