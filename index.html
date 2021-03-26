@@ -5,7 +5,9 @@
     <script src="js/player.js"></script>
     <script src="js/settings.js"></script>
     <link rel="icon" sizes="16x16 32x32" href="favicon.ico">
-    <!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
+    <!--[if IE]>
+    <link rel="shortcut icon" href="favicon.ico">
+    <![endif]-->
   </head>
   <body>
     <!-- Tab links -->
@@ -14,7 +16,6 @@
       <button class="tablinks" onclick="openCity(event, 'Inventory')">Paris</button>
       <button class="tablinks" onclick="openCity(event, 'Settings')">Tokyo</button>
     </div>
-    
     <!-- Tab content -->
     <div id="Player" class="tabcontent">
       <progress id="health" value="100" max="100"></progress>
@@ -28,44 +29,40 @@
         setInterval(update, 1);
       </script>
     </div>
-    
     <div id="Inventory" class="tabcontent">
       <h2>Inventory</h2>
       <p id="Weapon">Weapon: Fist (1 dmg)</p>
       <br>
       <p id="Armor">Armor: None (0 amr)</p>
     </div>
-    
     <div id="Settings" class="tabcontent">
       <h2>Settings</h2>
       <p>--------------------------------</p>
       <button onclick="desusify()">Desusify Title</button>
       <p>--------------------------------</p>
     </div>
-    
     <script>
       function openCity(evt, cityName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+      // Declare all variables
+      var i, tabcontent, tablinks;
+      
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+      }
+      
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+      }
     </script>
-    
     <div style="position: fixed; bottom: 0px; left: 10px; font-size: 12px;">
       <br>
       <br>
