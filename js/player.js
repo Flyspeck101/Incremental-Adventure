@@ -66,10 +66,10 @@ function moneyBoost(extra) {
 
 // Player weapons 
 var PossibleWeapons = {
-  fist: Weapon("Fist", 1);
-  stick: Weapon("Stick", 2);
-  woodSword: Weapon("Wooden Sword", 3);
-}
+  fist: Weapon("Fist", 1),
+  stick: Weapon("Stick", 2),
+  woodSword: Weapon("Wooden Sword", 3)
+};
 var currentWeapon = PossibleWeapons.fist;
 
 function attack(enemy) {
@@ -79,10 +79,10 @@ function attack(enemy) {
 
 // Player armor 
 var PossibleArmor = {
-  none: Armor("None", 0);
-  calculator: Armor("Broken Casio calculator", 1);
-  chestplate: Armor("Computer chestplate", 10);
-}
+  none: Armor("None", 0),
+  calculator: Armor("Broken Casio calculator", 1),
+  chestplate: Armor("Computer chestplate", 10)
+};
 var currentArmor = PossibleArmor.none; 
 
 function update() { 
