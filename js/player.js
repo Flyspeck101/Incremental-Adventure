@@ -1,4 +1,29 @@
-import * from weapons.js;
+// Weapon class 
+class Weapon {
+  constructor(name, damage) {
+    this.name = name;
+    this.damage = damage;
+  }
+}
+
+// Armor class 
+class Armor {
+  constructor(name, armorValue) {
+    this.name = name; 
+    this.armorValue = armorValue;
+  }
+}
+
+// Enemy class 
+class Enemy {
+  constructor(name, hp, weapon, armor) {
+    this.name = name;
+    this.hp = hp;
+    this.weapon = weapon;
+    this.armor = armor;
+  }
+}
+
 function notify(text) {
   alert(text);
 }
@@ -6,7 +31,7 @@ function notify(text) {
 var maxHealth = 100; 
 var health = 100; 
 var healingSpeed = 1; 
-var armor = 0;
+var armor = Armor("Nothing",0);
 
 function healthBoost(extra) { 
   maxHealth += extra; 
@@ -39,6 +64,27 @@ function moneyBoost(extra) {
   money += extra; 
 } 
 
+// Player weapons 
+var PossibleWeapons = {
+  fist: Weapon("Fist", 1);
+  stick: Weapon("Stick", 2);
+  woodSword: Weapon("Wooden Sword", 3);
+}
+var currentWeapon = PossibleWeapons.fist;
+
+function attack(enemy) {
+  enemy.hp -= currentWeapon.damage;
+  health -= enemy.weapon.damage - enemy.weapon.damage * (armor / 100);
+}
+
+// Player armor 
+var PossibleArmor = {
+  none: Armor("None", 0);
+  calculator: Armor("Broken Casio calculator", 1);
+  chestplate: Armor("Computer chestplate", 10);
+}
+var currentArmor = PossibleArmor.none; 
+
 function update() { 
   document.getElementById("health").value = health; 
   document.getElementById("health").max = maxHealth; 
@@ -51,23 +97,14 @@ function update() {
     document.getElementById("money").innerHTML = 
       "You have $" + money + " ($" + (moneyRate * 2) + "/s)"; 
   } 
+  document.getElementById("Weapon").innerHTML = "Weapon: " + currentWeapon.name + " (" + 
+    currentWeapon.damage + " dmg)";
+  document.getElementById("Armor").innerHTML = "Armor: " + currentArmor.name + " (" + 
+    currentArmor.armorValue + " amr)";
   if (money >= 0 && !startedWorking) { 
     moneyRate = 4; 
     document.getElementById("beg").remove();
     notify("You got a job at a McDonalds outlet. \
 \nEffect:\nMoney rate +$8/s, begging is disabled");
-  } 
-}
-
-// Weapons 
-var PossibleWeapons = {
-  fist: Weapon("Fist", 1);
-  stick: Weapon("Stick", 2);
-  woodSword: Weapon("Wooden Sword", 3);
-}
-var currentWeapon = PossibleWeapons.fist;
-
-function attack(enemy) {
-  enemy.hp -= currentWeapon.damage;
-  health -= enemy.weapon.damage - enemy.weapon.damage * (armor / 100);
+  }
 }
