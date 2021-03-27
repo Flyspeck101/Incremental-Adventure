@@ -107,4 +107,45 @@ function update() {
     notify("You got a job at a McDonalds outlet. \
 \nEffect:\nMoney rate +$8/s, begging is disabled");
   }
+  {
+    var moneyReq = -1;
+    var weaponToBuy = new Weapon("null", -10);
+    switch (currentWeapon) {
+      case PossibleWeapons.fist:
+        weaponToBuy = PossibleWeapons.stick;
+        moneyReq = 1000;
+        break;
+      case PossibleWeapons.stick;
+        weaponToBuy = PossibleWeapons.woodSword;
+        moneyReq = 10000;
+       break;
+      default:
+        break;
+    }
+    if (moneyReq < 0 || moneyReq > money) {
+      document.getElementById("Weapon Buy").disabled = true;
+    } else {
+      document.getElementById("Weapon Buy").disabled = false;
+    }
+    document.getElementById("Weapon Buy").innerHTML = weaponToBuy.name;
+  }
+}
+
+function buyWeapon() {
+  var moneyReq = 0;
+  var weaponToBuy = new Weapon("null", -10);
+  switch (currentWeapon) {
+    case PossibleWeapons.fist:
+      weaponToBuy = PossibleWeapons.stick;
+      moneyReq = 1000;
+      break;
+    case PossibleWeapons.stick;
+      weaponToBuy = PossibleWeapons.woodSword;
+      moneyReq = 10000;
+      break;
+    default:
+      break;
+  }
+  money -= moneyReq;
+  currentWeapon = weaponToBuy;
 }
