@@ -102,6 +102,7 @@ function update() {
     currentArmor.armorValue + " amr)";
   if (money >= 0 && !startedWorking) { 
     moneyRate = 4; 
+    startedWorking = true;
     document.getElementById("beg").remove();
     notify("You got a job at a McDonalds outlet. \
 \nEffect:\nMoney rate +$8/s, begging is disabled");
