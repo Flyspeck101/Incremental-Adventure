@@ -31,7 +31,7 @@ function notify(text) {
 var maxHealth = 100; 
 var health = 100; 
 var healingSpeed = 1; 
-var armor = Armor("Nothing",0);
+var armor = new Armor("Nothing",0);
 
 function healthBoost(extra) { 
   maxHealth += extra; 
@@ -66,9 +66,9 @@ function moneyBoost(extra) {
 
 // Player weapons 
 var PossibleWeapons = {
-  fist: Weapon("Fist", 1),
-  stick: Weapon("Stick", 2),
-  woodSword: Weapon("Wooden Sword", 3)
+  fist: new Weapon("Fist", 1),
+  stick: new Weapon("Stick", 2),
+  woodSword: new Weapon("Wooden Sword", 3)
 };
 var currentWeapon = PossibleWeapons.fist;
 
@@ -79,9 +79,9 @@ function attack(enemy) {
 
 // Player armor 
 var PossibleArmor = {
-  none: Armor("None", 0),
-  calculator: Armor("Broken Casio calculator", 1),
-  chestplate: Armor("Computer chestplate", 10)
+  none: new Armor("None", 0),
+  calculator: new Armor("Broken Casio calculator", 1),
+  chestplate: new Armor("Computer chestplate", 10)
 };
 var currentArmor = PossibleArmor.none; 
 
