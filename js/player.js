@@ -31,7 +31,6 @@ function notify(text) {
 var maxHealth = 100; 
 var health = 100; 
 var healingSpeed = 1; 
-var armor = new Armor("Nothing",0);
 
 function healthBoost(extra) { 
   maxHealth += extra; 
