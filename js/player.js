@@ -51,7 +51,7 @@ function healingSpeedBoost(extra) {
 } 
 
 // Money 
-var money = -1000; 
+var money = -100; 
 var moneyRate = 0; 
 var startedWorking = false; 
 
