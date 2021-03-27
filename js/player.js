@@ -84,7 +84,7 @@ function buyWeapon() {
       weaponToBuy = PossibleWeapons.stick;
       moneyReq = 1000;
       break;
-    case PossibleWeapons.stick;
+    case PossibleWeapons.stick:
       weaponToBuy = PossibleWeapons.woodSword;
       moneyReq = 10000;
       break;
@@ -135,7 +135,7 @@ function update() {
         weaponToBuy = PossibleWeapons.stick;
         moneyReq = 1000;
         break;
-      case PossibleWeapons.stick;
+      case PossibleWeapons.stick:
         weaponToBuy = PossibleWeapons.woodSword;
         moneyReq = 10000;
        break;
