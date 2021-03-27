@@ -76,6 +76,25 @@ function attack(enemy) {
   health -= enemy.weapon.damage - enemy.weapon.damage * (armor / 100);
 }
 
+function buyWeapon() {
+  var moneyReq = 0;
+  var weaponToBuy = new Weapon("null", -10);
+  switch (currentWeapon) {
+    case PossibleWeapons.fist:
+      weaponToBuy = PossibleWeapons.stick;
+      moneyReq = 1000;
+      break;
+    case PossibleWeapons.stick;
+      weaponToBuy = PossibleWeapons.woodSword;
+      moneyReq = 10000;
+      break;
+    default:
+      break;
+  }
+  money -= moneyReq;
+  currentWeapon = weaponToBuy;
+}
+
 // Player armor 
 var PossibleArmor = {
   none: new Armor("None", 0),
@@ -84,6 +103,7 @@ var PossibleArmor = {
 };
 var currentArmor = PossibleArmor.none; 
 
+// Update once per ms
 function update() { 
   document.getElementById("health").value = health; 
   document.getElementById("health").max = maxHealth; 
@@ -108,7 +128,7 @@ function update() {
 \nEffect:\nMoney rate +$8/s, begging is disabled");
   }
   {
-    var moneyReq = -1;
+    var moneyReq = Infinity;
     var weaponToBuy = new Weapon("null", -10);
     switch (currentWeapon) {
       case PossibleWeapons.fist:
@@ -127,25 +147,8 @@ function update() {
     } else {
       document.getElementById("Weapon Buy").disabled = false;
     }
-    document.getElementById("Weapon Buy").innerHTML = weaponToBuy.name;
+    document.getElementById("Weapon Buy").innerHTML = weaponToBuy.name + " ($" + moneyReq + ") ";
   }
 }
 
-function buyWeapon() {
-  var moneyReq = 0;
-  var weaponToBuy = new Weapon("null", -10);
-  switch (currentWeapon) {
-    case PossibleWeapons.fist:
-      weaponToBuy = PossibleWeapons.stick;
-      moneyReq = 1000;
-      break;
-    case PossibleWeapons.stick;
-      weaponToBuy = PossibleWeapons.woodSword;
-      moneyReq = 10000;
-      break;
-    default:
-      break;
-  }
-  money -= moneyReq;
-  currentWeapon = weaponToBuy;
-}
+
