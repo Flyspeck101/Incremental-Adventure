@@ -108,12 +108,12 @@ var currentArmor = PossibleArmor.none;
 function buyArmor() {
   var moneyReq = 0;
   var armorToBuy = new Armor("There are no more armors. Sorry!", 0);
-  switch (currentWeapon) {
+  switch (currentArmor) {
     case PossibleArmor.none:
       weaponToBuy = PossibleWeapons.calculator;
       moneyReq = 1000;
       break;
-    case PossibleWeapons.calculator:
+    case PossibleArmor.calculator:
       weaponToBuy = PossibleWeapons.chestplate;
       moneyReq = 10000;
       break;
