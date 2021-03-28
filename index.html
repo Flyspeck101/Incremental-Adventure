@@ -26,13 +26,6 @@
       <p id="healthText">100 hp / 100 hp</p>
       <p id="money">You are in debt! You have -$100 ($0/s)</p>
       <button onclick="moneyBoost(2)" id="beg">Beg for money</button>
-      <script>
-        // Updates
-        setInterval(naturalHeal, 1000);
-        setInterval(naturalMoney, 500);
-        setInterval(update, 1);
-        document.getElementById("defaultOpen").click();
-      </script>
     </div>
     <div id="Inventory" class="tabcontent">
       <h2>Inventory</h2>
@@ -58,5 +51,12 @@
       <a href="https://github.com/Flyspeck101/Incremental-Adventure-Genesis" hover="Source code in GitHub" target="_blank">Source code      </a>
       <a href="https://discord.gg/dUazpyMQdK" target="_blank">Discord Server</a>
     </div>
+    <script>
+      // Updates
+      setInterval(naturalHeal, 1000);
+      setInterval(naturalMoney, 500);
+      setInterval(update, 1);
+      document.getElementById("defaultOpen").click();
+    </script>
   </body>
 </html>
