@@ -105,6 +105,25 @@ var PossibleArmor = {
 };
 var currentArmor = PossibleArmor.none; 
 
+function buyArmor() {
+  var moneyReq = 0;
+  var armorToBuy = new Armor("There are no more armors. Sorry!", 0);
+  switch (currentWeapon) {
+    case PossibleArmor.none:
+      weaponToBuy = PossibleWeapons.calculator;
+      moneyReq = 1000;
+      break;
+    case PossibleWeapons.calculator:
+      weaponToBuy = PossibleWeapons.chestplate;
+      moneyReq = 10000;
+      break;
+    default:
+      break;
+  }
+  money -= moneyReq;
+  currentArmor = armorToBuy;
+}
+
 // Update once per ms
 function update() { 
   document.getElementById("health").value = health; 
@@ -131,7 +150,7 @@ function update() {
   }
   {
     var moneyReq = Infinity;
-    var weaponToBuy = new Weapon("null", -10);
+    var weaponToBuy = new Weapon("There are no more weapons. Sorry!", 0);
     switch (currentWeapon) {
       case PossibleWeapons.fist:
         weaponToBuy = PossibleWeapons.stick;
@@ -150,6 +169,28 @@ function update() {
       document.getElementById("Weapon Buy").disabled = false;
     }
     document.getElementById("Weapon Buy").innerHTML = weaponToBuy.name + " ($" + moneyReq + ") ";
+  }
+  {
+    var moneyReq = Infinity;
+    var armorToBuy = new Armor("There are no more armors. Sorry!", 0);
+    switch (currentArmor) {
+      case PossibleArmor.none:
+        armorToBuy = PossibleArmor.calculator;
+        moneyReq = 1000;
+        break;
+      case PossibleArmor.calculator:
+        armorToBuy = PossibleArmor.chestplate;
+        moneyReq = 10000;
+       break;
+      default:
+        break;
+    }
+    if (moneyReq < 0 || moneyReq > money) {
+      document.getElementById("Armor Buy").disabled = true;
+    } else {
+      document.getElementById("Armor Buy").disabled = false;
+    }
+    document.getElementById("Armor Buy").innerHTML = armorToBuy.name + " ($" + moneyReq + ") ";
   }
 }
 
