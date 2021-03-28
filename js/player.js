@@ -68,6 +68,8 @@ var PossibleWeapons = {
   fist: new Weapon("Fist", 1),
   stick: new Weapon("Stick", 2),
   woodSword: new Weapon("Wooden Sword", 3)
+  
+  
 };
 var currentWeapon = PossibleWeapons.fist;
 
