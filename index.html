@@ -5,6 +5,7 @@
     <style src="css/index.css"></style>
     <script src="js/player.js"></script>
     <script src="js/settings.js"></script>
+    <script src="js/tabs.js"></script>
     <link rel="icon" sizes="16x16 32x32" href="favicon.ico">
     <!--[if IE]>
     <link rel="shortcut icon" href="favicon.ico">
@@ -37,39 +38,17 @@
       <br>
       <p id="Armor">Armor: None (0 amr)</p>
     </div>
+    <div id="Shop" class="tabcontent">
+      <h2>Shop</h2>
+      <button id="Weapon Buy" onclick="buyWeapon()">Buy Stick</button>
+      <button id="Armor Buy" onclick="buyArmor()">Buy Broken Casio Calculator</button>
+    </div>
     <div id="Settings" class="tabcontent">
       <h2>Settings</h2>
       <p>--------------------------------</p>
       <button onclick="desusify()">Desusify Title</button>
       <p>--------------------------------</p>
     </div>
-    <div id="Shop" class="tabcontent">
-      <h2>Shop</h2>
-      <button id="Weapon Buy" onclick="buyWeapon()">Buy Stick</button>
-    </div>
-    <script>
-      function openCity(evt, cityName) {
-      // Declare all variables
-      var i, tabcontent, tablinks;
-      
-      // Get all elements with class="tabcontent" and hide them
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-      }
-      
-      // Get all elements with class="tablinks" and remove the class "active"
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-      
-      // Show the current tab, and add an "active" class to the button that opened the tab
-      document.getElementById(cityName).style.display = "block";
-      evt.currentTarget.className += " active";
-      }
-      document.getElementById("defaultOpen").click();
-    </script>
     <div style="position: fixed; bottom: 0px; left: 10px; font-size: 12px;">
       <br>
       <br>
