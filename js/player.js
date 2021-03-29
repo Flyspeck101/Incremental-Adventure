@@ -140,7 +140,7 @@ function update() {
   document.getElementById("Weapon").innerHTML = "Weapon: " + currentWeapon.name + " (" + 
     currentWeapon.damage + " dmg)";
   document.getElementById("Armor").innerHTML = "Armour: " + currentArmour.name + " (" + 
-    currentArmor.armorValue + " amr)";
+    currentArmour.armourValue + " amr)";
   if (money >= 0 && !startedWorking) { 
     moneyRate = 4; 
     startedWorking = true;
