@@ -29,6 +29,17 @@ class Enemy {
 function notify(text) {
   alert(text);
 }
+
+function hideById(id) {
+  var x = document.getElementById(id);
+  x.style.display = "none";
+}
+
+function showById(id) {
+  var x = document.getElementById(id);
+  x.style.display = "block";
+}
+
 // Health 
 var maxHealth = 100; 
 var health = 100; 
@@ -219,6 +230,7 @@ function update() {
     }
     document.getElementById("Armour Buy").innerHTML = armourToBuy.name + " ($" + moneyReq + ") ";
   }
+  
 }
 
 
