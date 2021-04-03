@@ -140,6 +140,7 @@ function buyArmour() {
 // Enemies!
 let inBattle = false;
 let currentEnemy = Enemy("null",Infinity,Weapon("null",0),Armour("null",0),"",0);
+var currentFloor = 0;
 let enemiesPerFloor = 5;
 let enemies = [
   {
@@ -154,8 +155,20 @@ let enemies = [
 `, 100)
   },
   {
-    rat: Enemy("a ... rat?", 20, Weapon("Sharp claws"), Armour("Nothing", 0),
-              ``, 500)
+    rat: Enemy("a ... rat?", 20, Weapon("Sharp claws", 6), Armour("Nothing", 0),
+              `       __             _,-"~^"-.
+     _// )      _,-"~`         `.
+   ." ( /`"-,-"`                 ;
+  / 6                             ;
+ /           ,             ,-"     ;
+(,__.--.      \           /        ;
+ //'   /`-.\   |          |        `._________
+   _.-'_/`  )  )--...,,,___\     \-----------,)
+ ((("~` _.-'.-'           __`-.   )         //
+       ((("`             (((---~"`         //
+                                          ((________________
+                                          `----""""~~~~^^^```
+`, 500)
   }
 ]
 
