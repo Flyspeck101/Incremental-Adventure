@@ -16,12 +16,13 @@ class Armour {
 
 // Enemy class 
 class Enemy {
-  constructor(name, hp, weapon, armour, ascii) {
+  constructor(name, hp, weapon, armour, ascii, drop) {
     this.name = name;
     this.hp = hp;
     this.weapon = weapon;
     this.armour = armour;
     this.ascii = ascii;
+    this.drop = drop;
   }
 }
 
@@ -123,6 +124,31 @@ function buyArmour() {
   }
   money -= moneyReq;
   currentArmour = armourToBuy;
+}
+
+// Enemies!
+let inBattle = false;
+let currentEnemy = Enemy("null",Infinity,Weapon("null",0),Armour("null",0),"",0);
+let enemiesPerFloor = 5;
+let enemies = {
+  {
+    rock: Enemy("a Rock", 10, Weapon("Small rock", 1), Armour("Nothing", 0), 
+                `             ____ 
+           _/    \
+         _/       \
+      __/    |  \_ \__
+     /    =  /        \
+    /  -          __   \
+-----------------------------
+`, 100)
+  },
+  {
+    
+  }
+}
+
+function startBattle() {
+  inBattle = true;
 }
 
 // Update once per ms
