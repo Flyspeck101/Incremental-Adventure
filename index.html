@@ -21,6 +21,7 @@
       <button class="tablinks" onclick="openCity(event, 'Inventory')">Inventory</button>
       <button class="tablinks" onclick="openCity(event, 'Shop')">Shop</button>
       <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
+      <button class="tablinks" onclick="openCity(event, 'Battle')">Battle!</button>
     </div>
     <!-- Tab content -->
     <div id="Player" class="tabcontent">
@@ -39,6 +40,11 @@
       <h2>Shop</h2>
       <button id="Weapon Buy" onclick="buyWeapon()">Buy Stick</button>
       <button id="Armour Buy" onclick="buyArmour()">Buy Broken Casio Calculator</button>
+    </div>
+    <div id="Battle" class="tabcontent">
+      <p id="inBattle">You are not battling anything right now.</p>
+      <p id="battleStats"></p>
+      <button id="attack" onclick="attack(currentEnemy)"></button>
     </div>
     <div id="Settings" class="tabcontent">
       <h2>Settings</h2>
