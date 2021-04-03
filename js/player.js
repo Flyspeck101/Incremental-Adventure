@@ -105,11 +105,11 @@ var PossibleArmour = {
 };
 var currentArmour = PossibleArmour.none; 
 
-function buyArmor() {
+function buyArmour() {
   var moneyReq = 0;
-  var armorToBuy = new Armour("There are no more armors. Sorry!", 0);
+  var armourToBuy = new Armour("There are no more armors. Sorry!", 0);
   switch (currentArmour) {
-    case PossibleArmor.none:
+    case PossibleArmour.none:
       armourToBuy = PossibleArmour.calculator;
       moneyReq = 1000;
       break;
@@ -139,7 +139,7 @@ function update() {
   } 
   document.getElementById("Weapon").innerHTML = "Weapon: " + currentWeapon.name + " (" + 
     currentWeapon.damage + " dmg)";
-  document.getElementById("Armor").innerHTML = "Armour: " + currentArmour.name + " (" + 
+  document.getElementById("Armour").innerHTML = "Armour: " + currentArmour.name + " (" + 
     currentArmour.armourValue + " amr)";
   if (money >= 0 && !startedWorking) { 
     moneyRate = 4; 
@@ -178,7 +178,7 @@ function update() {
         armourToBuy = PossibleArmour.calculator;
         moneyReq = 1000;
         break;
-      case PossibleArmor.calculator:
+      case PossibleArmour.calculator:
         armourToBuy = PossibleArmour.chestplate;
         moneyReq = 10000;
        break;
