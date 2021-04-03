@@ -142,7 +142,7 @@ let inBattle = false;
 let currentEnemy = Enemy("null",Infinity,Weapon("null",0),Armour("null",0),"",0);
 let enemiesPerFloor = 5;
 let enemies = [
-  [
+  {
     rock: Enemy("a Rock", 10, Weapon("Small rock", 1), Armour("Nothing", 0), 
                 `             ____ 
            _/    \
@@ -152,10 +152,11 @@ let enemies = [
     /  -          __   \
 -----------------------------
 `, 100)
-  ],
-  [
-    
-  ]
+  },
+  {
+    rat: Enemy("a ... rat?", 20, Weapon("Sharp claws"), Armour("Nothing", 0),
+              ``, 500)
+  }
 ]
 
 function startBattle() {
