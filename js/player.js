@@ -16,11 +16,12 @@ class Armour {
 
 // Enemy class 
 class Enemy {
-  constructor(name, hp, weapon, armour) {
+  constructor(name, hp, weapon, armour, ascii) {
     this.name = name;
     this.hp = hp;
     this.weapon = weapon;
     this.armour = armour;
+    this.ascii = ascii;
   }
 }
 
@@ -193,6 +194,7 @@ function update() {
     document.getElementById("Armour Buy").innerHTML = armourToBuy.name + " ($" + moneyReq + ") ";
   }
 }
+
 
 
 //
