@@ -114,7 +114,7 @@ function buyArmour() {
       moneyReq = 1000;
       break;
     case PossibleArmour.calculator:
-      armourToBuy = PossibleArmuor.chestplate;
+      armourToBuy = PossibleArmour.chestplate;
       moneyReq = 10000;
       break;
     default:
