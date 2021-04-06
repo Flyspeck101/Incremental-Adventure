@@ -25,6 +25,9 @@ class Enemy {
     this.ascii = ascii;
     this.drop = drop;
   }
+  isAlive() {
+    return hp > 0;
+  }
 }
 
 function notify(text) {
@@ -39,6 +42,10 @@ function hideById(id) {
 function showById(id) {
   var x = document.getElementById(id);
   x.style.display = "block";
+}
+
+function randomElement(array) {
+  return array[Math.floor(Math.random() * array.length)];
 }
 
 // Health 
@@ -142,11 +149,12 @@ function buyArmour() {
 let inBattle = false;
 let currentEnemy = new Enemy("null",Infinity,new Weapon("null",0),new Armour("null",0),"",0);
 var currentFloor = 0;
+let maxFloor = 2;
 var enemiesPassed = 0;
 let enemiesPerFloor = 5;
 let enemies = [
-  {
-    rock: new Enemy("a Rock", 10, new Weapon("Small rock", 1), new Armour("Nothing", 0), 
+  [
+    new Enemy("a Rock", 10, new Weapon("Small rock", 1), new Armour("Nothing", 0), 
                 `             ____ 
            _/    \
          _/       \
@@ -155,9 +163,9 @@ let enemies = [
     /  -          __   \
 -----------------------------
 `, 100)
-  },
-  {
-    rat: new Enemy("a ... rat?", 20, new Weapon("Sharp claws", 6), new Armour("Nothing", 0),
+  ],
+  [
+    new Enemy("a ... rat?", 20, new Weapon("Sharp claws", 6), new Armour("Nothing", 0),
               `       __             _,-"~^"-..
      _// )      _,-"~           .
    ." ( / "-,-"                  ;
@@ -171,7 +179,7 @@ let enemies = [
                                           ((________________
                                            \---""""~~~~^^^--
 `, 500)
-  }
+  ]
 ]
 
 function startBattle() {
@@ -247,7 +255,8 @@ function update() {
     document.getElementById("Armour Buy").innerHTML = armourToBuy.name + " ($" + moneyReq + ") ";
   }
   if (inBattle) {
-    showById("attack");    
+    showById("attack");
+    showById("escape");
     document.getElementById("inBattle").innerHTML = "You are in battle!";
     let battleStats = currentEnemy.ascii;
     battleStats += "\n\n\n";
@@ -279,8 +288,25 @@ function update() {
     battleStats += currentArmour.armourValue;
     battleStats += " pts)\n\n";
     document.getElementById("battleStats").innerHTML = battleStats;
+    if (currentFloor == 0) {
+      currentFloor += 1;
+      currentEnemy = randomElement(enemies[0]);
+    } else {
+      while (enemiesPassed < enemiesPerFloor) {
+        while (currentEnemy.isAlive()) {}
+        enemiesPassed += 1;
+        money += currentEnemy.drop;
+        currentEnemy = randomElement(enemies[currentFloor - 1]);
+      }
+      currentFloor += 1;
+      if (currentFloor > maxFloor) {
+        currentFloor = maxFloor;
+      }
+      currentEnemy = randomElement(enemies[currentFloor - 1]);
+    }
   } else {
     hideById("attack")
+    hideById("escape")
     document.getElementById("inBattle").innerHTML = "You are not battling anything right now.";
     document.getElementById("battleStats").innerHTML = "";
   }
