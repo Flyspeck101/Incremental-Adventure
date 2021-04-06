@@ -19,6 +19,7 @@ class Enemy {
   constructor(name, hp, weapon, armour, ascii, drop) {
     this.name = name;
     this.hp = hp;
+    this.max = hp;
     this.weapon = weapon;
     this.armour = armour;
     this.ascii = ascii;
@@ -87,7 +88,7 @@ var PossibleWeapons = {
 var currentWeapon = PossibleWeapons.fist;
 
 function attack(enemy) {
-  enemy.hp -= currentWeapon.damage;
+  enemy.hp -= currentWeapon.damage - currentWeapon.damage * (enemy.armour.armourValue / 100);
   health -= enemy.weapon.damage - enemy.weapon.damage * (currentArmour.armourValue / 100);
 }
 
@@ -139,12 +140,13 @@ function buyArmour() {
 
 // Enemies!
 let inBattle = false;
-let currentEnemy = Enemy("null",Infinity,Weapon("null",0),Armour("null",0),"",0);
+let currentEnemy = new Enemy("null",Infinity,new Weapon("null",0),new Armour("null",0),"",0);
 var currentFloor = 0;
+var enemiesPassed = 0;
 let enemiesPerFloor = 5;
 let enemies = [
   {
-    rock: Enemy("a Rock", 10, Weapon("Small rock", 1), Armour("Nothing", 0), 
+    rock: new Enemy("a Rock", 10, new Weapon("Small rock", 1), new Armour("Nothing", 0), 
                 `             ____ 
            _/    \
          _/       \
@@ -155,7 +157,7 @@ let enemies = [
 `, 100)
   },
   {
-    rat: Enemy("a ... rat?", 20, Weapon("Sharp claws", 6), Armour("Nothing", 0),
+    rat: new Enemy("a ... rat?", 20, new Weapon("Sharp claws", 6), new Armour("Nothing", 0),
               `       __             _,-"~^"-..
      _// )      _,-"~           .
    ." ( / "-,-"                  ;
@@ -244,7 +246,44 @@ function update() {
     }
     document.getElementById("Armour Buy").innerHTML = armourToBuy.name + " ($" + moneyReq + ") ";
   }
-  
+  if (inBattle) {
+    showById("attack");    
+    document.getElementById("inBattle").innerHTML = "You are in battle!";
+    let battleStats = currentEnemy.ascii;
+    battleStats += "\n\n\n";
+    battleStats += "You are fighting: ";
+    battleStats += currentEnemy.name;
+    battleStats += "\nHealth: "
+    battleStats += currentEnemy.hp;
+    battleStats += " hp / ";
+    battleStats += currentEnemy.max;
+    battleStats += " hp\nWeapon: ";
+    battleStats += currentEnemy.weapon.name;
+    battleStats += "\nDamage: ";
+    battleStats += currentEnemy.weapon.damage;
+    battleStats += "\nArmour: ";
+    battleStats += currentEnemy.armour.name;
+    battleStats += " (";
+    battleStats += currentEnemy.armour.armourValue;
+    battleStats += " pts)\n\nYou:\nHealth: ";
+    battleStats += health;
+    battleStats += " hp / ";
+    battleStats += maxHealth;
+    battleStats += " hp\nWeapon: ";
+    battleStats += currentWeapon.name;
+    battleStats += "\nDamage: ";
+    battleStats += currentWeapon.damage;
+    battleStats += "\nArmour: ";
+    battleStats += currentArmour.name;
+    battleStats += " (";
+    battleStats += currentArmour.armourValue;
+    battleStats += " pts)\n\n";
+    document.getElementById("battleStats").innerHTML = battleStats;
+  } else {
+    hideById("attack")
+    document.getElementById("inBattle").innerHTML = "You are not battling anything right now.";
+    document.getElementById("battleStats").innerHTML = "";
+    
 }
 
 
