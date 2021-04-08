@@ -81,7 +81,12 @@
     </div>
     <script>
       // Updates
-      setInterval(naturalHeal, 1000);
+      function ifCheckNaturalHeal() {
+        if (!inBattle) {
+          naturalHeal()
+        }
+      }
+      setInterval(ifCheckNaturalHeal, 1000);
       setInterval(naturalMoney, 500);
       setInterval(update, 1);
       document.getElementById("defaultOpen").click();
