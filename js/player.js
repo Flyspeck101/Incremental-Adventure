@@ -272,8 +272,8 @@ function update() {
     + currentWeapon.damage + "\nArmour: " + currentArmour.name
     + " (" + currentArmour.armourValue + " pts)\n\n";
     document.getElementById("battleStats").innerHTML = battleStats;
-    while (enemiesPassed < enemiesPerFloor) {
-      while (currentEnemy.isAlive()) {}
+    if (!(enemiesPassed < enemiesPerFloor)) {
+      if (!(currentEnemy.isAlive())) {}
       enemiesPassed += 1;
       money += currentEnemy.drop;
       currentEnemy = randomElement(enemies[currentFloor - 1]);
