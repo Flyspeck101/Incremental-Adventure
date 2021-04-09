@@ -180,7 +180,7 @@ let enemies = [
                                            \---""""~~~~^^^--\n
 `, 500)
   ]
-]
+];
 
 function startBattle() {
   inBattle = true;
@@ -257,53 +257,32 @@ function update() {
   if (inBattle) {
     showById("attack");
     showById("escape");
-    document.getElementById("inBattle").innerHTML = "You are in battle!";
-    let battleStats = currentEnemy.ascii;
-    battleStats += "\n\n\n";
-    battleStats += "You are fighting: ";
-    battleStats += currentEnemy.name;
-    battleStats += "\nHealth: "
-    battleStats += currentEnemy.hp;
-    battleStats += " hp / ";
-    battleStats += currentEnemy.max;
-    battleStats += " hp\nWeapon: ";
-    battleStats += currentEnemy.weapon.name;
-    battleStats += "\nDamage: ";
-    battleStats += currentEnemy.weapon.damage;
-    battleStats += "\nArmour: ";
-    battleStats += currentEnemy.armour.name;
-    battleStats += " (";
-    battleStats += currentEnemy.armour.armourValue;
-    battleStats += " pts)\n\nYou:\nHealth: ";
-    battleStats += health;
-    battleStats += " hp / ";
-    battleStats += maxHealth;
-    battleStats += " hp\nWeapon: ";
-    battleStats += currentWeapon.name;
-    battleStats += "\nDamage: ";
-    battleStats += currentWeapon.damage;
-    battleStats += "\nArmour: ";
-    battleStats += currentArmour.name;
-    battleStats += " (";
-    battleStats += currentArmour.armourValue;
-    battleStats += " pts)\n\n";
-    document.getElementById("battleStats").innerHTML = battleStats;
     if (currentFloor == 0) {
       currentFloor += 1;
       currentEnemy = randomElement(enemies[0]);
-    } else {
-      while (enemiesPassed < enemiesPerFloor) {
-        while (currentEnemy.isAlive()) {}
-        enemiesPassed += 1;
-        money += currentEnemy.drop;
-        currentEnemy = randomElement(enemies[currentFloor - 1]);
-      }
-      currentFloor += 1;
-      if (currentFloor > maxFloor) {
-        currentFloor = maxFloor;
-      }
+    }
+    document.getElementById("inBattle").innerHTML = "You are in battle!";
+    let battleStats = currentEnemy.ascii + "\n\n\n" + "You are fighting: " 
+    + currentEnemy.name + "\nHealth: " + currentEnemy.hp + " hp / "
+    + currentEnemy.max + " hp\nWeapon: " + currentEnemy.weapon.name
+    + "\nDamage: " + currentEnemy.weapon.damage + "\nArmour: "
+    + currentEnemy.armour.name + " (" + currentEnemy.armour.armourValue 
+    + " pts)\n\nYou:\nHealth: " + health + " hp / " + maxHealth
+    + " hp\nWeapon: " + currentWeapon.name + "\nDamage: "
+    + currentWeapon.damage + "\nArmour: " + currentArmour.name
+    + " (" + currentArmour.armourValue + " pts)\n\n";
+    document.getElementById("battleStats").innerHTML = battleStats;
+    while (enemiesPassed < enemiesPerFloor) {
+      while (currentEnemy.isAlive()) {}
+      enemiesPassed += 1;
+      money += currentEnemy.drop;
       currentEnemy = randomElement(enemies[currentFloor - 1]);
     }
+    currentFloor += 1;
+    if (currentFloor > maxFloor) {
+      currentFloor = maxFloor;
+    }
+    currentEnemy = randomElement(enemies[currentFloor - 1]);
   } else {
     hideById("attack")
     hideById("escape")
