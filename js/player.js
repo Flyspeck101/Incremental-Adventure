@@ -26,7 +26,10 @@ class Enemy {
     this.drop = drop;
   }
   isAlive() {
-    return this.hp > 0;
+    if (this.hp > 0) {
+      return true;
+    }
+    return false;
   }
 }
 
