@@ -285,7 +285,6 @@ function update() {
     if (currentFloor > maxFloor) {
       currentFloor = maxFloor;
     }
-    currentEnemy = randomElement(enemies[currentFloor - 1]);
   } else {
     hideById("attack")
     hideById("escape")
