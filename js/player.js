@@ -275,16 +275,19 @@ function update() {
     + currentWeapon.damage + "\nArmour: " + currentArmour.name
     + " (" + currentArmour.armourValue + " pts)\n\n";
     document.getElementById("battleStats").innerHTML = battleStats;
-    if (!(enemiesPassed < enemiesPerFloor)) {
-      if (!(currentEnemy.isAlive())) {}
+    if (!(currentEnemy.isAlive())) {
       enemiesPassed += 1;
       money += currentEnemy.drop;
+      if (enemiesPassed == enemiesPerFloor) {
+        currentFloor += 1;
+        if (currentFloor > maxFloor) {
+          currentFloor = maxFloor;
+        }
+      }
       currentEnemy = randomElement(enemies[currentFloor - 1]);
     }
-    currentFloor += 1;
-    if (currentFloor > maxFloor) {
-      currentFloor = maxFloor;
-    }
+    
+    
   } else {
     hideById("attack")
     hideById("escape")
