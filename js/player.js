@@ -75,16 +75,16 @@ function healingSpeedBoost(extra) {
 } 
 
 // Money 
-var money = -100; 
+var money = 100; 
 var moneyRate = 0; 
 var startedWorking = false; 
 
 function naturalMoney() { 
-  money += moneyRate; 
+  money -= moneyRate; 
 } 
 
 function moneyBoost(extra) { 
-  money += extra; 
+  money -= extra; 
 } 
 
 // Player weapons 
@@ -104,20 +104,20 @@ function attack(enemy) {
 
 function buyWeapon() {
   var moneyReq = 0;
-  var weaponToBuy = new Weapon("null", -10);
+  var weaponToBuy = new Weapon("null", 10);
   switch (currentWeapon) {
     case PossibleWeapons.fist:
       weaponToBuy = PossibleWeapons.stick;
-      moneyReq = 1000;
+      moneyReq = -1000;
       break;
     case PossibleWeapons.stick:
       weaponToBuy = PossibleWeapons.woodSword;
-      moneyReq = 10000;
+      moneyReq = -10000;
       break;
     default:
       break;
   }
-  money -= moneyReq;
+  money += moneyReq;
   currentWeapon = weaponToBuy;
 }
 
@@ -135,17 +135,32 @@ function buyArmour() {
   switch (currentArmour) {
     case PossibleArmour.none:
       armourToBuy = PossibleArmour.calculator;
-      moneyReq = 1000;
+      moneyReq = -1000;
       break;
     case PossibleArmour.calculator:
       armourToBuy = PossibleArmour.chestplate;
-      moneyReq = 10000;
+      moneyReq = -10000;
       break;
     default:
       break;
   }
-  money -= moneyReq;
+  money += moneyReq;
   currentArmour = armourToBuy;
+}
+
+// Inventory
+var inventory = {
+  potions: {
+    health: [0,0,0,0,0],
+    precision: 0
+  }
+
+// Health pots
+function useHealthPot(strength) {
+  if (inventory.potions.health[strength] == 0) return false;
+  if (inventory.potions.health[strength] < 0) (function() {inventory.potions.health[strength]++;health+=(50*strength);return true;})();
+  if (inventory.potions.health[strength] > 0) (function() {alert("You cheater"); alert("Your progress will be reset. There is nothing you can do to stop this"); location = location;})()
+  return false;
 }
 
 // Enemies!
@@ -155,6 +170,7 @@ var currentFloor = 0;
 let maxFloor = 2;
 var enemiesPassed = 0;
 let enemiesPerFloor = 5;
+var hits = 0;
 let enemies = [
   [
     new Enemy("a Rock", 10, new Weapon("Small rock", 1), new Armour("Nothing", 0), 
@@ -195,40 +211,40 @@ function update() {
   document.getElementById("health").max = maxHealth; 
   document.getElementById("healthText").innerHTML = 
     health + " hp / " + maxHealth + " hp"; 
-  if (money < 0) { 
+  if (money > 0) { 
     document.getElementById("money").innerHTML = 
-      "You are in debt! You have -$" + (0 - money) + " ($" + (moneyRate * 2) + "/s)"; 
+      "You are in debt! You have -$" + (0 - money) + " ($" + (moneyRate * -2) + "/s)"; 
   } else { 
     document.getElementById("money").innerHTML = 
-      "You have $" + money + " ($" + (moneyRate * 2) + "/s)"; 
+      "You have $" + -money + " ($" + (moneyRate * -2) + "/s)"; 
   } 
   document.getElementById("Weapon").innerHTML = "Weapon: " + currentWeapon.name + " (" + 
     currentWeapon.damage + " dmg)";
   document.getElementById("Armour").innerHTML = "Armour: " + currentArmour.name + " (" + 
     currentArmour.armourValue + " amr)";
   if (money >= 0 && !startedWorking) { 
-    moneyRate = 4; 
+    moneyRate = -4; 
     startedWorking = true;
     document.getElementById("beg").remove();
     notify("You got a job at a McDonalds outlet. \
 \nEffect:\nMoney rate +$8/s, begging is disabled");
   }
   {
-    var moneyReq = Infinity;
+    var moneyReq = -Infinity;
     var weaponToBuy = new Weapon("There are no more weapons. Sorry!", 0);
     switch (currentWeapon) {
       case PossibleWeapons.fist:
         weaponToBuy = PossibleWeapons.stick;
-        moneyReq = 1000;
+        moneyReq = -1000;
         break;
       case PossibleWeapons.stick:
         weaponToBuy = PossibleWeapons.woodSword;
-        moneyReq = 10000;
+        moneyReq = -10000;
        break;
       default:
         break;
     }
-    if (moneyReq < 0 || moneyReq > money) {
+    if (moneyReq > 0 || moneyReq < money) {
       document.getElementById("Weapon Buy").disabled = true;
     } else {
       document.getElementById("Weapon Buy").disabled = false;
@@ -236,21 +252,21 @@ function update() {
     document.getElementById("Weapon Buy").innerHTML = weaponToBuy.name + " ($" + moneyReq + ") ";
   }
   {
-    var moneyReq = Infinity;
+    var moneyReq = -Infinity;
     var armourToBuy = new Armour("There are no more armours. Sorry!", 0);
     switch (currentArmour) {
       case PossibleArmour.none:
         armourToBuy = PossibleArmour.calculator;
-        moneyReq = 1000;
+        moneyReq = -1000;
         break;
       case PossibleArmour.calculator:
         armourToBuy = PossibleArmour.chestplate;
-        moneyReq = 10000;
+        moneyReq = -10000;
        break;
       default:
         break;
     }
-    if (moneyReq < 0 || moneyReq > money) {
+    if (moneyReq > 0 || moneyReq < money) {
       document.getElementById("Armour Buy").disabled = true;
     } else {
       document.getElementById("Armour Buy").disabled = false;
@@ -260,6 +276,7 @@ function update() {
   if (inBattle) {
     showById("attack");
     showById("escape");
+    showById("health potion");
     if (currentFloor == 0) {
       currentFloor += 1;
       currentEnemy = randomElement(enemies[0]);
@@ -277,7 +294,7 @@ function update() {
     document.getElementById("battleStats").innerHTML = battleStats;
     if (!(currentEnemy.isAlive())) {
       enemiesPassed += 1;
-      money += currentEnemy.drop;
+      money -= currentEnemy.drop;
       if (enemiesPassed == enemiesPerFloor) {
         currentFloor += 1;
         if (currentFloor > maxFloor) {
@@ -289,10 +306,15 @@ function update() {
     
     
   } else {
-    hideById("attack")
-    hideById("escape")
+    hideById("attack");
+    hideById("escape");
+    hideById("health potion");
     document.getElementById("inBattle").innerHTML = "You are not battling anything right now.";
     document.getElementById("battleStats").innerHTML = "";
+    inBattle = false;
+    currentEnemy = new Enemy("null",Infinity,new Weapon("null",0),new Armour("null",0),"",0);
+    currentFloor = 0;
+    enemiesPassed = 0;
   }
 }
 
