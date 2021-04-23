@@ -154,13 +154,23 @@ var inventory = {
     health: [0,0,0,0,0],
     precision: 0
   }
-
+}
 // Health pots
 function useHealthPot(strength) {
   if (inventory.potions.health[strength] == 0) return false;
-  if (inventory.potions.health[strength] < 0) (function() {inventory.potions.health[strength]++;health+=(50*strength);return true;})();
+  if (inventory.potions.health[strength] < 0) (function() {inventory.potions.health[strength]++;health+=(50*(strength+1));return true;})();
   if (inventory.potions.health[strength] > 0) (function() {alert("You cheater"); alert("Your progress will be reset. There is nothing you can do to stop this"); location = location;})()
   return false;
+}
+
+let buyHealth = function (strength) {
+  if (money > (10000*(strength+1))) {
+    alert("You do not have enough money.");
+    return;
+  } else {
+    money += 10000*(strength+1);
+    inventory.potions.health[strength]--;
+  }
 }
 
 // Enemies!
