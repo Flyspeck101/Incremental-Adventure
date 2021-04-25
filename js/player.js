@@ -102,7 +102,7 @@ var inventory = {
   } 
 }
 // Health pots 
-function useHealthPot(strength) { 
+function useHealth(strength) { 
   if (inventory.potions.health[strength] == 0) return false; 
   if (inventory.potions.health[strength] < 0) (function() {
     inventory.potions.health[strength]++;
