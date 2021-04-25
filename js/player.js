@@ -117,7 +117,7 @@ function useHealth(strength) {
   return false; 
 }
 
-function buyHealthPot(strength) {
+function buyHealth(strength) {
   const cost = 20000 * (strength + 1);
   if (checkMoney(cost)) {
     money -= cost;
