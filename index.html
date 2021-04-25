@@ -18,11 +18,13 @@
     <font face="Monospace">
     <!-- Tab links -->
     <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'Player')" id="defaultOpen">Player</button>
-      <button class="tablinks" onclick="openCity(event, 'Inventory')">Inventory</button>
-      <button class="tablinks" onclick="openCity(event, 'Shop')">Shop</button>
-      <button class="tablinks" onclick="openCity(event, 'Battle')">Battle!</button>
-      <button class="tablinks" onclick="openCity(event, 'Settings')">Settings</button>
+      <h2>---------------------------------</h2>
+      <h2 class="tablinks" onclick="openCity(event, 'Player')" id="defaultOpen">Player</h2>
+      <h2 class="tablinks" onclick="openCity(event, 'Inventory')">|Inventory|</h2>
+      <h2 class="tablinks" onclick="openCity(event, 'Shop')">Shop|</h2>
+      <h2 class="tablinks" onclick="openCity(event, 'Battle')">Battle!|</h2>
+      <h2 class="tablinks" onclick="openCity(event, 'Settings')">Settings|</h2>
+      <h2>---------------------------------</h2>
     </div>
     <!-- Tab content -->
     <div id="Player" class="tabcontent">
@@ -44,7 +46,12 @@
       <h2>Shop</h2>
       <button id="Weapon Buy" onclick="buyWeapon()">Buy Stick</button>
       <button id="Armour Buy" onclick="buyArmour()">Buy Broken Casio Calculator</button>
-      <button id="health potion" onclick="buyHealth(0)">Buy a Health I potion</button>
+      <button id="healthpotb1" onclick="buyHealth(0)">Buy a Health I potion($20000)</button>
+      <button id="healthpotb2" onclick="buyHealth(1)">Buy a Health II potion($40000</button>
+      <button id="healthpotb3" onclick="buyHealth(2)">Buy a Health III potion($60000)</button>
+      <button id="healthpotb4" onclick="buyHealth(3)">Buy a Health IV potion($80000)</button>
+      <button id="healthpotb5" onclick="buyHealth(4)">Buy a Health V potion($100000)</button>
+      <button id="healthpottroll" onclick="(function(){alert('They don\'t exist');document.getElementById('healthpottroll').innerHTML = 'Buy a nonexistent Health X potion ($0)';})()">Buy a Health X potion ($0)</button>
     </div>
     <div id="Battle" class="tabcontent">
       <br/>
@@ -53,6 +60,11 @@
       <pre id="battleStats"></pre>
       <button id="attack" onclick="attack(currentEnemy)">Attack!</button>
       <button id="escape" onclick="inBattle=false">Run away!</button>
+      <button id="healthpot1" onclick="(function(){useHealthPot(0);document.getElementById('healthpot1').disabled = true; setTimeout((function(){document.getElementById('healthpot1').disabled = false;}),10000)})()">Chug a Health I potion (0)<button>
+      <button id="healthpot2" onclick="(function(){useHealthPot(1);document.getElementById('healthpot2').disabled = true; setTimeout((function(){document.getElementById('healthpot2').disabled = false;}),10000)})()">Chug a Health II potion (0)<button>
+      <button id="healthpot3" onclick="(function(){useHealthPot(2);document.getElementById('healthpot3').disabled = true; setTimeout((function(){document.getElementById('healthpot3').disabled = false;}),10000)})()">Chug a Health III potion (0)<button>
+      <button id="healthpot4" onclick="(function(){useHealthPot(3);document.getElementById('healthpot4').disabled = true; setTimeout((function(){document.getElementById('healthpot4').disabled = false;}),10000)})()">Chug a Health IV potion (0)<button>
+      <button id="healthpot5" onclick="(function(){useHealthPot(4);document.getElementById('healthpot5').disabled = true; setTimeout((function(){document.getElementById('healthpot5').disabled = false;}),10000)})()">Chug a Health V potion (0)<button>
     </div>
     <div id="Settings" class="tabcontent">
       <h2>Settings</h2>
