@@ -44,6 +44,7 @@ function showById(id) {
 function randomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
+
 // Health 
 var maxHealth = 100; 
 var health = 100; 
@@ -77,6 +78,10 @@ function moneyBoost(extra) {
   money += extra; 
 } 
 
+function checkMoney(cost) {
+  return cost > money;
+}
+
 var inventory = { 
   potions: { 
     health: [0,0,0,0,0], 
@@ -88,7 +93,7 @@ function useHealthPot(strength) {
   if (inventory.potions.health[strength] == 0) return false; 
   if (inventory.potions.health[strength] < 0) (function() {
     inventory.potions.health[strength]++;
-    health+=(50*strength);
+    health+=(50*(strength+1));
     return true;
   })(); 
   if (inventory.potions.health[strength] > 0) (function() {
@@ -97,6 +102,16 @@ function useHealthPot(strength) {
     location = location;
   })() 
   return false; 
+}
+
+function buyHealthPot(strength) {
+  const cost = 20000 * (strength + 1);
+  if checkMoney(cost) {
+    money -= cost;
+    inventory.potions.health[strength] -= 1;
+  } else {
+    notify("You do not have enough money to buy this potion!");
+  }
 }
 
 // Player weapons 
@@ -268,6 +283,21 @@ function update() {
   if (inBattle) {
     showById("attack");
     showById("escape");
+    showById("healthpot1"); 
+    showById("healthpot2"); 
+    showById("healthpot3"); 
+    showById("healthpot4"); 
+    showById("healthpot5"); 
+    inventory.potions.health.forEach(
+      (function(value, index, array) {
+        if (value == 0) {
+          document.getElementById("healthpot" + (index + 1)).disabled = true;
+        } else {
+          document.getElementById("healthpot" + (index + 1)).disabled = false;
+        }
+      })
+    )
+    
     if (currentFloor == 0) {
       currentFloor += 1;
       currentEnemy = randomElement(enemies[0]);
@@ -299,7 +329,11 @@ function update() {
   } else {
     hideById("attack")
     hideById("escape")
-    hideById("health potion"); 
+    hideById("healthpot1"); 
+    hideById("healthpot2"); 
+    hideById("healthpot3"); 
+    hideById("healthpot4"); 
+    hideById("healthpot5"); 
     document.getElementById("inBattle").innerHTML = "You are not battling anything right now."; 
     document.getElementById("battleStats").innerHTML = ""; 
     inBattle = false; 
