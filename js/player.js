@@ -92,7 +92,7 @@ function moneyBoost(extra) {
 } 
 
 function checkMoney(cost) {
-  return cost > money;
+  return (cost > money);
 }
 
 var inventory = { 
@@ -251,6 +251,12 @@ function update() {
     document.getElementById("beg").remove();
     notify("You got a job at a McDonalds outlet. \
 \nEffect:\nMoney rate +$8/s, begging is disabled");
+  }
+  if (health <= 0) {
+    notify("YOU DIED!\n\nAnd half your money got yeeted into undefinedness");
+    money = money / 2;
+    inBattle = false; 
+    health = maxHealth;
   }
   {
     var moneyReq = Infinity;
