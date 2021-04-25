@@ -119,7 +119,7 @@ function useHealthPot(strength) {
 
 function buyHealthPot(strength) {
   const cost = 20000 * (strength + 1);
-  if checkMoney(cost) {
+  if (checkMoney(cost)) {
     money -= cost;
     inventory.potions.health[strength] -= 1;
   } else {
