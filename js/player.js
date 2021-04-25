@@ -30,6 +30,8 @@ class Enemy {
     return false;
   }
 }
+
+// CORE FUNCTIONS
 function notify(text) {
   alert(text);
 }
@@ -43,6 +45,17 @@ function showById(id) {
 }
 function randomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
+}
+
+function romanize(num) {
+  var lookup = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},roman = '',i;
+  for ( i in lookup ) {
+    while ( num >= lookup[i] ) {
+      roman += i;
+      num -= lookup[i];
+    }
+  }
+  return roman;
 }
 
 // Health 
@@ -229,6 +242,9 @@ function update() {
     currentWeapon.damage + " dmg)";
   document.getElementById("Armour").innerHTML = "Armour: " + currentArmour.name + " (" + 
     currentArmour.armourValue + " amr)";
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById("hpotc" + i).innerHTML = "Health " + romanize(i) + " potions: " + inventory.potions.health[i - 1];
+  }
   if (money >= 0 && !startedWorking) { 
     moneyRate = 4; 
     startedWorking = true;
