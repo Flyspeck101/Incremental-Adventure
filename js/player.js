@@ -132,6 +132,9 @@ var PossibleWeapons = {
   fist: new Weapon("Fist", 1),
   stick: new Weapon("Stick", 2),
   woodSword: new Weapon("Wooden Sword", 3)
+  sandedWoodSword: new Weapon("Finely Sanded Wooden Sword", 4)
+  polishedWoodSword: new Weapon("Polished Wood Sword", 5)
+  artisanWoodSword: new Weapon("Artisanly Crafted Wooden Sword", 6)
   
   
 };
@@ -153,6 +156,18 @@ function buyWeapon() {
       weaponToBuy = PossibleWeapons.woodSword;
       moneyReq = 10000;
       break;
+    case PossibleWeapons.woodSword:
+      weaponToBuy = PossibleWeapons.sandedWoodSword;
+      moneyReq = 20000;
+      break;
+    case PossibleWeapons.sandedWoodSword:
+      weaponToBuy = PossibleWeapons.polishedWoodSword;
+      moneyReq = 50000;
+      break;
+    case PossibleWeapons.polishedWoodSword:
+      weaponToBuy = PossibleWeapons.astisanWoodSword;
+      moneyReq = 100000;
+      break;
     default:
       break;
   }
@@ -165,6 +180,9 @@ var PossibleArmour = {
   none: new Armour("None", 0),
   calculator: new Armour("Broken Casio calculator", 1),
   chestplate: new Armour("Computer chestplate", 10)
+  chestplate2: new Armour("Intel 13 Chestplate", 12)
+  chestplate3: new Armour("Dedicated GPU chestplate", 18)
+  chestplate4: new Armour("Quad Core CPU chestplate", 24)
 };
 var currentArmour = PossibleArmour.none; 
 function buyArmour() {
@@ -178,6 +196,18 @@ function buyArmour() {
     case PossibleArmour.calculator:
       armourToBuy = PossibleArmour.chestplate;
       moneyReq = 10000;
+      break;
+    case PossibleArmour.chestplate:
+      armourToBuy = PossibleArmour.chestplate1;
+      moneyReq = 20000;
+      break;
+    case PossibleArmour.chestplate1:
+      armourToBuy = PossibleArmour.chestplate2;
+      moneyReq = 40000;
+      break;
+    case PossibleArmour.chestplate2:
+      armourToBuy = PossibleArmour.chestplate3;
+      moneyReq = 80000;
       break;
     default:
       break;
